@@ -3,6 +3,10 @@ const props = defineProps({
   todo: {
     type: Object,
     required: true,
+    validator: (t) =>
+      typeof t?.id === 'number' &&
+      typeof t?.text === 'string' &&
+      typeof t?.completed === 'boolean',
   },
 })
 
@@ -97,4 +101,3 @@ const emit = defineEmits(['toggle', 'delete'])
   transform: translateY(0);
 }
 </style>
-

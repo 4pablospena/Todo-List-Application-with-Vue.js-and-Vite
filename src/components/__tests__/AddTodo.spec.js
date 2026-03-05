@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import AddTodo from '../AddTodo.vue'
+import AddTodo from '../todo/AddTodo.vue'
 
 describe('AddTodo.vue', () => {
   it('renders input and button', () => {

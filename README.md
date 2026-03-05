@@ -66,22 +66,23 @@ Archivos y carpetas más relevantes:
     - Carga inicial desde `localStorage` si existen datos.
     - Guarda automáticamente cada cambio de `todos`.
 
-- `src/components/AddTodo.vue`  
+- `src/components/todo/AddTodo.vue`  
   Formulario controlado para añadir tareas:
   - Input de texto con `v-model`.
   - Botón “Add” deshabilitado si el texto está vacío o solo tiene espacios.
   - Emite `add-todo` con el texto ya recortado al enviar el formulario.
 
-- `src/components/TodoItem.vue`  
+- `src/components/todo/TodoItem.vue`  
   Representa una tarea individual:
   - Checkbox para marcar como completada.
   - Texto de la tarea con **strikethrough** y color atenuado cuando está completada.
   - Botón para eliminar la tarea.
+  - Prop `todo` con validador para `{ id, text, completed }`.
   - Eventos:
     - `toggle`
     - `delete`
 
-- `src/components/TodoList.vue`  
+- `src/components/todo/TodoList.vue`  
   Lista de tareas:
   - Recibe por `props`:
     - `todos`
@@ -89,12 +90,17 @@ Archivos y carpetas más relevantes:
     - `completedCount`
   - Muestra:
     - Cabecera con título “Your tasks”.
-    - Chips con “Total” y “Completed”.
+    - Componente `TodoStats` con “Total” y “Completed”.
     - Mensaje de estado vacío cuando `todos` está vacío.
     - Lista de `TodoItem` cuando hay tareas.
   - Reemite eventos:
     - `toggle-todo`
     - `delete-todo`
+
+- `src/components/todo/TodoStats.vue`  
+  Contadores de estado:
+  - Props: `totalCount`, `completedCount`.
+  - Muestra chips "Total" y "Completed".
 
 - `src/styles/base.css`  
   Estilos globales:
@@ -211,6 +217,9 @@ Las pruebas están implementadas con **Vitest** y **Vue Test Utils**, cubriendo:
   - Renderizado del texto.
   - Estilos de completado aplicados correctamente.
   - Emisión de eventos `toggle` y `delete`.
+
+- `TodoStats.vue`:
+  - Renderizado de contadores Total y Completed.
 
 - `TodoList.vue`:
   - Estado vacío cuando no hay tareas.

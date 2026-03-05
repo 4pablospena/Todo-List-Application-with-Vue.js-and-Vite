@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import TodoList from '../TodoList.vue'
-import TodoItem from '../TodoItem.vue'
+import TodoList from '../todo/TodoList.vue'
+import TodoItem from '../todo/TodoItem.vue'
 
 const createTodos = () => [
   { id: 1, text: 'Task 1', completed: false },

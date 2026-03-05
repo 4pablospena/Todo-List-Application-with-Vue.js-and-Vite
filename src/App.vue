@@ -1,13 +1,9 @@
 <script setup>
-import AddTodo from './components/AddTodo.vue'
-import TodoList from './components/TodoList.vue'
+import AddTodo from './components/todo/AddTodo.vue'
+import TodoList from './components/todo/TodoList.vue'
 import { useTodos } from './composables/useTodos'
 
 const { todos, totalCount, completedCount, addTodo, toggleTodo, deleteTodo } = useTodos()
-
-const handleAddTodo = (text) => {
-  addTodo(text)
-}
 </script>
 
 <template>
@@ -18,7 +14,7 @@ const handleAddTodo = (text) => {
     </section>
 
     <section class="app__card">
-      <AddTodo @add-todo="handleAddTodo" />
+      <AddTodo @add-todo="addTodo" />
 
       <TodoList
         :todos="todos"
