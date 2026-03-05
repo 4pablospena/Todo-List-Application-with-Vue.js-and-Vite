@@ -244,5 +244,3 @@ Algunas mejoras que se podrían añadir sobre esta base:
 - Edición inline del texto de una tarea.
 - Internacionalización (i18n) para soportar varios idiomas.
 - Persistencia en backend (API REST, Firebase, etc.) en lugar de solo `localStorage`.
-
-Este proyecto ya es una buena base para mostrar en entrevistas o como mini-portafolio, demostrando dominio de Vue 3 moderno, composición de componentes, estado reactivo, persistencia en cliente y testing. 
