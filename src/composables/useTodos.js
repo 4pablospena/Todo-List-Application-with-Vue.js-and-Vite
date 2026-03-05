@@ -1,8 +1,27 @@
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
+
+const STORAGE_KEY = 'vue-todos'
 
 export function useTodos() {
   const todos = ref([])
-  let nextId = 1
+
+  const saved = localStorage.getItem(STORAGE_KEY)
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved)
+      if (Array.isArray(parsed)) {
+        todos.value = parsed
+      }
+    } catch {
+      todos.value = []
+    }
+  }
+
+  const maxExistingId = todos.value.reduce(
+    (max, todo) => (typeof todo.id === 'number' && todo.id > max ? todo.id : max),
+    0,
+  )
+  let nextId = maxExistingId + 1
 
   const addTodo = (text) => {
     const trimmed = typeof text === 'string' ? text.trim() : ''
@@ -29,6 +48,14 @@ export function useTodos() {
 
   const completedCount = computed(
     () => todos.value.filter((item) => item.completed).length,
+  )
+
+  watch(
+    todos,
+    (newValue) => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(newValue))
+    },
+    { deep: true },
   )
 
   return {
